@@ -1,17 +1,22 @@
-﻿namespace JogoDaVelha
+﻿using JogoDaVelha.Controllers;
+using JogoDaVelha.Entities;
+using JogoDaVelha.Repository;
+
+namespace JogoDaVelha
 {
-    class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("\n\tBem-vindo(a) ao Jogo da Velha.");
-            Console.Write("\n\tPressione qualquer tecla para acessar ao menu ");
-            Console.ReadKey();
+            Menu.Abertura();
+
+            JSON data = new JSON();
 
             int option=10;
             do
             {
-                ShowMenu();
+                Menu.ShowMainMenu();
+
                 try
                 {
                     option=int.Parse(Console.ReadLine());
@@ -19,28 +24,35 @@
                     {
                         Console.Clear();
                         Console.WriteLine("\n\tOpção inserida inválida. Tente novamente.");
-                        Console.Write("\n\tPressione qualquer tecla para voltar ao menu ");
-                        Console.ReadKey();
+                        Menu.VoltarMainMenu();
                     }
                 }
                 catch 
                 {
                     Console.Clear();
                     Console.WriteLine("\n\tLetras ou caractéres não são válidos. Tente novamente.");
-                    Console.Write("\n\tPressione qualquer tecla para voltar ao menu ");
-                    Console.ReadKey();
+                    Menu.VoltarMainMenu();
                 }
 
                 switch (option)
                 {
                     case 0:
-                        Console.Clear();
-                        Console.WriteLine("\n\tEncerrando o Jogo da Velha.\n\n\tObrigado por jogar.");
-                        Console.WriteLine("\n");
+                        Menu.Encerrar();
                         break;
                     case 1:
+                        Console.Clear();
+                        Console.WriteLine("\n\tCadastrar novo Jogador.");
+                        string nickname = Menu.GetNickname();
+                        Jogador novoJogador = new Jogador(nickname);
+                        JSON.SerializarAdd(novoJogador);
+                        Menu.VoltarMainMenu();
                         break;
                     case 2:
+                        Console.Clear();
+                        Console.WriteLine("\n\tDeletar Jogador.");
+                        nickname = Menu.GetNickname();
+                        JSON.SerializarRemove(nickname);
+                        Menu.VoltarMainMenu();
                         break;
                     case 3:
                         break;
@@ -53,19 +65,6 @@
                 }
             }
             while (option != 0);
-        }
-        static void ShowMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("\n\tEscolha uma opção para continuar: ");
-            Console.WriteLine("\n\t1 - Cadastrar novo Jogador");
-            Console.WriteLine("\t2 - Deletar Jogador");
-            Console.WriteLine("\t3 - Ranking de Jogadores");
-            Console.WriteLine("\t4 - Detalhes de um Jogador");
-            Console.WriteLine("\t5 - Maior quantidade de pontos");
-            Console.WriteLine("\t6 - Jogar");
-            Console.WriteLine("\t0 - Sair do jogo");
-            Console.Write("\n\tDigite a opção desejada: ");
         }
     }
 }

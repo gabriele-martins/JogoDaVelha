@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YFnaZrKMnpLdgu8MPKu46vX2Onq9qZ9ljy71nDt4GoyYRar6Fbvm7sJbsTRz2JRbnSAaLdjVIsGSgIUzB+9gwQ==",
+  "dgSpecHash": "j0vk6xYc4LeOZ3NVBfFg3dSSU0/x4j/1vZ7rt7qfQP3OpKf6mMjIxWxKzkFNZXAkvuAN3i1Qn1L+Pj2i/Vcyuw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\Downloads\\Estudos Programação\\Sharp Coders\\Projetos\\JogoDaVelha\\JogoDaVelha\\JogoDaVelha\\JogoDaVelha.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -13,3 +13,5 @@ C:\Users\Usuario\Downloads\Estudos Programação\Sharp Coders\Projetos\JogoDaVel
 C:\Users\Usuario\Downloads\Estudos Programação\Sharp Coders\Projetos\JogoDaVelha\JogoDaVelha\JogoDaVelha\obj\Debug\net6.0\JogoDaVelha.pdb
 C:\Users\Usuario\Downloads\Estudos Programação\Sharp Coders\Projetos\JogoDaVelha\JogoDaVelha\JogoDaVelha\obj\Debug\net6.0\JogoDaVelha.genruntimeconfig.cache
 C:\Users\Usuario\Downloads\Estudos Programação\Sharp Coders\Projetos\JogoDaVelha\JogoDaVelha\JogoDaVelha\obj\Debug\net6.0\ref\JogoDaVelha.dll
+C:\Users\Usuario\Downloads\Estudos Programação\Sharp Coders\Projetos\JogoDaVelha\JogoDaVelha\JogoDaVelha\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Usuario\Downloads\Estudos Programação\Sharp Coders\Projetos\JogoDaVelha\JogoDaVelha\JogoDaVelha\obj\Debug\net6.0\JogoDaVelha.csproj.CopyComplete
