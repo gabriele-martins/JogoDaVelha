@@ -1,0 +1,13 @@
+Classes:
+
+Program (menu)
+
+Jogadores (nickname, partidas jogadas, pontos, 
+vitorias, perdas, empates)
+
+Ranking (atualizar ranking, posições no ranking)
+
+Jogar (jogo da velha)
+
+JSON (alterar dados, salvar dados, deletar dados
+buscar dados)
