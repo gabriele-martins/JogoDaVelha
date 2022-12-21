@@ -1,4 +1,6 @@
-﻿namespace JogoDaVelha.Controllers
+﻿using JogoDaVelha.Repository;
+
+namespace JogoDaVelha.Controllers
 {
     public class Menu
     {
@@ -31,6 +33,24 @@
             Console.Write("\n\tDigite o Nickname: ");
             string name = Console.ReadLine();
             return name;
+        }
+        public static string ExisteJogador(string nickname)
+        {
+            while (Json.jogadores.Any(player => player.Nickname == nickname))
+            {
+                Console.WriteLine("\n\tJogador já cadastrado. Tente novamente.");
+                nickname = GetNickname();
+            }
+            return nickname;
+        }
+        public static string NaoExisteJogador(string nickname)
+        {
+            while (!Json.jogadores.Any(player => player.Nickname == nickname))
+            {
+                Console.WriteLine("\n\tJogador não cadastrado. Tente novamente.");
+                nickname = GetNickname();
+            }
+            return nickname;
         }
         public static void Encerrar()
         {

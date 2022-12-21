@@ -1,6 +1,7 @@
 ﻿using JogoDaVelha.Controllers;
 using JogoDaVelha.Entities;
 using JogoDaVelha.Repository;
+using JogoDaVelha.Services;
 
 namespace JogoDaVelha
 {
@@ -10,7 +11,7 @@ namespace JogoDaVelha
         {
             Menu.Abertura();
 
-            JSON data = new JSON();
+            Json data = new Json();
 
             int option=10;
             do
@@ -40,27 +41,22 @@ namespace JogoDaVelha
                         Menu.Encerrar();
                         break;
                     case 1:
-                        Console.Clear();
-                        Console.WriteLine("\n\tCadastrar novo Jogador.");
-                        string nickname = Menu.GetNickname();
-                        Jogador novoJogador = new Jogador(nickname);
-                        JSON.SerializarAdd(novoJogador);
-                        Menu.VoltarMainMenu();
+                        Json.Adicionar();
                         break;
                     case 2:
-                        Console.Clear();
-                        Console.WriteLine("\n\tDeletar Jogador.");
-                        nickname = Menu.GetNickname();
-                        JSON.SerializarRemove(nickname);
-                        Menu.VoltarMainMenu();
+                        Json.Remover();
                         break;
                     case 3:
+                        Ranking.MostrarRanking();
                         break;
                     case 4:
+                        Jogador.DetalharJogador();
                         break;
                     case 5:
+                        Json.Atualizar();
                         break;
                     case 6:
+                        Jogar.Jogo();
                         break;
                 }
             }

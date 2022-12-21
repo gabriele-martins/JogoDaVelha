@@ -4,48 +4,64 @@ using Newtonsoft.Json;
 
 namespace JogoDaVelha.Repository
 {
-    public class JSON
+    public class Json
     {
         private static string path = "Dados.json";
 
         public static List<Jogador> jogadores = Desserializar();
 
-        public JSON()
+        public Json()
         {
             if (!File.Exists(path)) File.Create(path).Close();
         }
 
-        public static void SerializarAdd(Jogador jogador)
+        public static void Adicionar()
         {
-            while (jogadores.Any(player => player.Nickname == jogador.Nickname))
-            {
-                Console.WriteLine("\n\tJogador já cadastrado. Tente novamente.");
-                jogador.Nickname = Menu.GetNickname();
-            }
+            Console.Clear();
+            Console.WriteLine("\n\tCadastrar novo Jogador.");
+            string nickname = Menu.GetNickname();
+            nickname = Menu.ExisteJogador(nickname);
+            Jogador jogador = new Jogador(nickname);
             jogadores.Add(jogador);
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(path))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    serializer.Serialize(sw, jogadores);
-                }
-                Console.WriteLine("\n\tJogador cadastrado com sucesso.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"\n\t{e.Message}");
-            }
+            Serializar();
+            Console.WriteLine("\n\tJogador cadastrado com sucesso.");
+            Menu.VoltarMainMenu();
         }
 
-        public static void SerializarRemove(string nickname)
+        public static void Remover()
         {
-            while (!jogadores.Any(player => player.Nickname == nickname))
-            {
-                Console.WriteLine("\n\tJogador não cadastrado. Tente novamente.");
-                nickname = Menu.GetNickname();
-            }
+            Console.Clear();
+            Console.WriteLine("\n\tDeletar Jogador.");
+            string nickname = Menu.GetNickname();
+            nickname = Menu.NaoExisteJogador(nickname);
             jogadores.RemoveAll(player => player.Nickname == nickname);
+            Serializar();
+            Console.WriteLine("\n\tJogador deletado com sucesso.");
+            Menu.VoltarMainMenu();
+        }
+
+        public static void Atualizar()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\tMudar nickname de Jogador.");
+            string nickname = Menu.GetNickname();
+            nickname = Menu.NaoExisteJogador(nickname);
+            Console.Write("\n\tDigite o novo Nickname: ");
+            string novoNick = Console.ReadLine();
+            while (jogadores.Any(player => player.Nickname == novoNick))
+            {
+                Console.WriteLine("\n\tJogador já cadastrado. Tente novamente.");
+                Console.Write("\n\tDigite o novo Nickname: ");
+                novoNick = Console.ReadLine();
+            }
+            jogadores.Find(player => player.Nickname == nickname).Nickname = novoNick;
+            Serializar();
+            Console.WriteLine("\n\tNickname atualizado com sucesso.");
+            Menu.VoltarMainMenu();
+        }
+
+        public static void Serializar()
+        {
             try
             {
                 using (StreamWriter sw = new StreamWriter(path))
@@ -53,7 +69,6 @@ namespace JogoDaVelha.Repository
                     JsonSerializer serializer = new JsonSerializer();
                     serializer.Serialize(sw, jogadores);
                 }
-                Console.WriteLine("\n\tJogador deletado com sucesso.");
             }
             catch (Exception e)
             {

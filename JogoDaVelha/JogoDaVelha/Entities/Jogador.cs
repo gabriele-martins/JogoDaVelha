@@ -1,4 +1,7 @@
-﻿namespace JogoDaVelha.Entities
+﻿using JogoDaVelha.Controllers;
+using JogoDaVelha.Repository;
+
+namespace JogoDaVelha.Entities
 {
     public class Jogador
     {
@@ -16,6 +19,23 @@
             Vitorias = 0;
             Derrotas = 0;
             Empates = 0;
+        }
+        public static void DetalharJogador()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\tDetalhes de um Jogador.");
+            string nickname = Menu.GetNickname();
+            while (!Json.jogadores.Any(player => player.Nickname == nickname))
+            {
+                Console.WriteLine("\n\tJogador não cadastrado. Tente novamente.");
+                nickname = Menu.GetNickname();
+            }
+            Console.WriteLine($"\n\tPartidas: {Json.jogadores.Find(player => player.Nickname == nickname).Partidas}");
+            Console.WriteLine($"\tPontos: {Json.jogadores.Find(player => player.Nickname == nickname).Pontos}");
+            Console.WriteLine($"\tVitórias: {Json.jogadores.Find(player => player.Nickname == nickname).Vitorias}");
+            Console.WriteLine($"\tDerrotas: {Json.jogadores.Find(player => player.Nickname == nickname).Derrotas}");
+            Console.WriteLine($"\tEmpates: {Json.jogadores.Find(player => player.Nickname == nickname).Empates}");
+            Menu.VoltarMainMenu();
         }
     }
 }
