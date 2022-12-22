@@ -1,4 +1,6 @@
-﻿namespace JogoDaVelha.Entities
+﻿using System.Text;
+
+namespace JogoDaVelha.Entities
 {
     public class Tabuleiro
     {
@@ -18,16 +20,37 @@
         }
         public static void MostrarTabuleiro(string[,] tabuleiro, int tamanho)
         {
+            int maior;
+            string tab;
+            if (tamanho == 3)
+            {
+                maior = 1;
+                tab = "___|";
+            }
+            else if (tamanho < 10)
+            {
+                maior = 2;
+                tab = "____|";
+            }
+            else
+            {
+                maior = 3;
+                tab = "_____|";
+            }
+            string str = string.Concat(Enumerable.Repeat(tab, tamanho));
+            str = str.Remove(str.Length-1);
             Console.Clear();
             Console.WriteLine("\n");
             for (int i = 0; i < tamanho; i++)
             {
                 Console.Write("\t ");
-                for (int j = 0; j < tamanho; j++)
+                for (int j = 0; j < tamanho-1; j++)
                 {
-                    Console.Write($"[{tabuleiro[i,j]}] ");
+                    Console.Write(" {0} |",tabuleiro[i, j].ToString().PadLeft(maior));
                 }
-                Console.WriteLine();
+                Console.Write(" {0}\n", tabuleiro[i, tamanho-1].ToString().PadLeft(maior));
+                if(i!=tamanho-1) Console.WriteLine("\t {0}",str);
+                else Console.WriteLine("\t {0}", str.Replace('_',' '));
             }
         }
         public static void AlterarTabuleiro(string posicao, int tamanho, string[,] tabuleiro, string valor)
@@ -64,6 +87,19 @@
             }
             if (somaDiagPrin == tamanho) return true;
             if (somaDiagSec == tamanho) return true;
+            return false;
+        }
+        public static bool VerificarVelha(string posicao, int tamanho, string[,] tabuleiro)
+        {
+            int velha = 0;
+            for (int i = 0; i < tamanho; i++)
+            {
+                for (int j = 0; j < tamanho; j++)
+                {
+                    if (tabuleiro[i, j] == "X" || tabuleiro[i, j] == "O") velha++;
+                }
+            }
+            if(velha == tamanho*tamanho) return true;
             return false;
         }
     }
