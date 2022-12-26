@@ -14,12 +14,20 @@ namespace JogoDaVelha.Services
         public static void MostrarRanking()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("\n\tRanking de Jogadores");
+            Console.ResetColor();
             AtualizarRanking();
             for (int i=ranking.Count-1, j=1; i>=0; i--, j++)
             {
-                Console.WriteLine($"\n\t{j}º {ranking[i].Nickname}");
-                Console.WriteLine($"\tPontos: {ranking[i].Pontos}");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.Write($"\n\t{j}º");
+                Console.ResetColor();
+                Console.WriteLine($" {ranking[i].Nickname}");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.Write($"\tPontos:");
+                Console.ResetColor();
+                Console.WriteLine($" {ranking[i].Pontos}");
             }
             Menu.VoltarMainMenu();
         }

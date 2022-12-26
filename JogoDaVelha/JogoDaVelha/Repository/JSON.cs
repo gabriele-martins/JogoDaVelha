@@ -18,45 +18,62 @@ namespace JogoDaVelha.Repository
         public static void Adicionar()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("\n\tCadastrar novo Jogador.");
+            Console.ResetColor();
             string nickname = Menu.GetNickname();
             nickname = Menu.ExisteJogador(nickname);
             Jogador jogador = new Jogador(nickname);
             jogadores.Add(jogador);
             Serializar();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\tJogador cadastrado com sucesso.");
+            Console.ResetColor();
             Menu.VoltarMainMenu();
         }
 
         public static void Remover()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("\n\tDeletar Jogador.");
+            Console.ResetColor();
             string nickname = Menu.GetNickname();
             nickname = Menu.NaoExisteJogador(nickname);
             jogadores.RemoveAll(player => player.Nickname == nickname);
             Serializar();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\tJogador deletado com sucesso.");
+            Console.ResetColor();
             Menu.VoltarMainMenu();
         }
 
         public static void Atualizar()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("\n\tMudar nickname de Jogador.");
+            Console.ResetColor();
             string nickname = Menu.GetNickname();
             nickname = Menu.NaoExisteJogador(nickname);
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write("\n\tDigite o novo Nickname: ");
+            Console.ResetColor();
             string novoNick = Console.ReadLine();
             while (jogadores.Any(player => player.Nickname == novoNick))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\tJogador já cadastrado. Tente novamente.");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.Write("\n\tDigite o novo Nickname: ");
+                Console.ResetColor();
                 novoNick = Console.ReadLine();
             }
             jogadores.Find(player => player.Nickname == nickname).Nickname = novoNick;
             Serializar();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\tNickname atualizado com sucesso.");
+            Console.ResetColor();
             Menu.VoltarMainMenu();
         }
 
@@ -72,7 +89,9 @@ namespace JogoDaVelha.Repository
             }
             catch (Exception e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"\n\t{e.Message}");
+                Console.ResetColor();
             }
         }
 
@@ -89,7 +108,9 @@ namespace JogoDaVelha.Repository
             }
             catch (Exception e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"\n\t{e.Message}");
+                Console.ResetColor();
             }
             return jogadores;
         }

@@ -23,18 +23,37 @@ namespace JogoDaVelha.Entities
         public static void DetalharJogador()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("\n\tDetalhes de um Jogador.");
+            Console.ResetColor();
             string nickname = Menu.GetNickname();
             while (!Json.jogadores.Any(player => player.Nickname == nickname))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\tJogador não cadastrado. Tente novamente.");
+                Console.ResetColor();
                 nickname = Menu.GetNickname();
             }
-            Console.WriteLine($"\n\tPartidas: {Json.jogadores.Find(player => player.Nickname == nickname).Partidas}");
-            Console.WriteLine($"\tPontos: {Json.jogadores.Find(player => player.Nickname == nickname).Pontos}");
-            Console.WriteLine($"\tVitórias: {Json.jogadores.Find(player => player.Nickname == nickname).Vitorias}");
-            Console.WriteLine($"\tDerrotas: {Json.jogadores.Find(player => player.Nickname == nickname).Derrotas}");
-            Console.WriteLine($"\tEmpates: {Json.jogadores.Find(player => player.Nickname == nickname).Empates}");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"\n\tPartidas:");
+            Console.ResetColor();
+            Console.WriteLine($" {Json.jogadores.Find(player => player.Nickname == nickname).Partidas}");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"\tPontos:");
+            Console.ResetColor();
+            Console.WriteLine($" {Json.jogadores.Find(player => player.Nickname == nickname).Pontos}");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"\tVitórias:");
+            Console.ResetColor();
+            Console.WriteLine($" {Json.jogadores.Find(player => player.Nickname == nickname).Vitorias}");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"\tDerrotas:");
+            Console.ResetColor();
+            Console.WriteLine($" {Json.jogadores.Find(player => player.Nickname == nickname).Derrotas}");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"\tEmpates:");
+            Console.ResetColor();
+            Console.WriteLine($" {Json.jogadores.Find(player => player.Nickname == nickname).Empates}");
             Menu.VoltarMainMenu();
         }
     }

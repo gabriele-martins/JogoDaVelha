@@ -9,6 +9,8 @@ namespace JogoDaVelha
     {
         public static void Main(string[] args)
         {
+            Console.Title = "Jogo da Velha";
+
             Menu.Abertura();
 
             Json data = new Json();
@@ -24,14 +26,18 @@ namespace JogoDaVelha
                     if (option<0 || option>6)
                     {
                         Console.Clear();
+                        Console.ForegroundColor= ConsoleColor.Red;
                         Console.WriteLine("\n\tOpção inserida inválida. Tente novamente.");
+                        Console.ResetColor();
                         Menu.VoltarMainMenu();
                     }
                 }
                 catch 
                 {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\n\tLetras ou caractéres não são válidos. Tente novamente.");
+                    Console.ResetColor();
                     Menu.VoltarMainMenu();
                 }
 

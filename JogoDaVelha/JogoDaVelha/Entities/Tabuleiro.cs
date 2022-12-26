@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace JogoDaVelha.Entities
+﻿namespace JogoDaVelha.Entities
 {
     public class Tabuleiro
     {
@@ -46,9 +44,35 @@ namespace JogoDaVelha.Entities
                 Console.Write("\t ");
                 for (int j = 0; j < tamanho-1; j++)
                 {
-                    Console.Write(" {0} |",tabuleiro[i, j].ToString().PadLeft(maior));
+                    if (tabuleiro[i, j] == "X")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(" {0}", tabuleiro[i, j].ToString().PadLeft(maior));
+                        Console.ResetColor();
+                        Console.Write(" |");
+                    }
+                    else if (tabuleiro[i, j] == "O")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(" {0}", tabuleiro[i, j].ToString().PadLeft(maior));
+                        Console.ResetColor();
+                        Console.Write(" |");
+                    }
+                    else Console.Write(" {0} |",tabuleiro[i, j].ToString().PadLeft(maior));
                 }
-                Console.Write(" {0}\n", tabuleiro[i, tamanho-1].ToString().PadLeft(maior));
+                if (tabuleiro[i, tamanho-1] == "X")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(" {0}\n", tabuleiro[i, tamanho-1].ToString().PadLeft(maior));
+                    Console.ResetColor();
+                }
+                else if (tabuleiro[i, tamanho-1] == "O")
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(" {0}\n", tabuleiro[i, tamanho-1].ToString().PadLeft(maior));
+                    Console.ResetColor();
+                }
+                else Console.Write(" {0}\n", tabuleiro[i, tamanho-1].ToString().PadLeft(maior));
                 if(i!=tamanho-1) Console.WriteLine("\t {0}",str);
                 else Console.WriteLine("\t {0}", str.Replace('_',' '));
             }
