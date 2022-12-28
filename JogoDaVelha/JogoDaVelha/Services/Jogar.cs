@@ -80,6 +80,7 @@ namespace JogoDaVelha.Services
                             Json.jogadores.Find(player => player.Nickname == Jogador2).Derrotas += 1;
                             Ranking.AtualizarRanking();
                             Json.Serializar();
+                            posicoes.Clear();
                             Menu.VoltarMainMenu();
                             break;
                         }
@@ -111,6 +112,7 @@ namespace JogoDaVelha.Services
                             Json.jogadores.Find(player => player.Nickname == Jogador1).Derrotas += 1;
                             Ranking.AtualizarRanking();
                             Json.Serializar();
+                            posicoes.Clear();
                             Menu.VoltarMainMenu();
                             break;
                         }
@@ -138,6 +140,7 @@ namespace JogoDaVelha.Services
                         Json.jogadores.Find(player => player.Nickname == Jogador2).Empates += 1;
                         Ranking.AtualizarRanking();
                         Json.Serializar();
+                        posicoes.Clear();
                         Menu.VoltarMainMenu();
                         break;
                     }

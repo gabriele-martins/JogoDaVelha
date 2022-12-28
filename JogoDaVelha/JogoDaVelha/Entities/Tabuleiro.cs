@@ -79,7 +79,6 @@
         }
         public static void AlterarTabuleiro(string posicao, int tamanho, string[,] tabuleiro, string valor)
         {
-            
             for (int i = 0; i < tamanho; i++)
             {
                 for (int j = 0; j < tamanho; j++)
@@ -87,6 +86,7 @@
                     if (tabuleiro[i,j]==posicao)
                     {
                         tabuleiro[i, j] = valor;
+                        break;
                     }
                 }
             }

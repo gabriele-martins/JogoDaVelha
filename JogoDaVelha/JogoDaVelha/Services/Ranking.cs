@@ -9,7 +9,7 @@ namespace JogoDaVelha.Services
         private static List<Jogador> ranking = Json.jogadores.OrderBy(jogador => jogador.Pontos).ToList();
         public static void AtualizarRanking()
         {
-            ranking = Json.jogadores.OrderBy(jogador => jogador.Pontos).ToList();
+            ranking = Json.jogadores.OrderBy(jogador => jogador.Pontos).ThenBy(jogador => jogador.Vitorias).ThenByDescending(jogador => jogador.Derrotas).ToList();
         }
         public static void MostrarRanking()
         {
